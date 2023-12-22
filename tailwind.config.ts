@@ -19,13 +19,11 @@ const config: Config = {
       colors: {
         black14: '#141414',
         black17: '#171717',
-        black10: '#101010',
         gray40: '#404040',
         gray60: '#606060',
         graySuccess: '#e8fff5',
         gray2A: '#2a2a2a',
         gray1C: '#1c1c1c',
-        gray23: '#232323',
         gray7F: '#7f7f7f',
         grayBG: '#CCCCCC',
         greenB7Uploads: '#20c982',

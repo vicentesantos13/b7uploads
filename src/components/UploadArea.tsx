@@ -3,32 +3,27 @@ import Image from "next/image";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import UploadSchema from "@/schemas/UploadSchema";
 
 export const UploadArea = () => {
-  const MessageFormSchema = z.object({
-    file: z
-      .any()
-      .refine(
-        (files) => files?.[0]?.type,
-        "Necessário ter pelo menos um arquivo."
-      ),
-  });
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(MessageFormSchema),
+    resolver: zodResolver(UploadSchema),
   });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
   const handleSend = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);
+      reset();
     }, 1000);
   };
   return (
@@ -54,7 +49,7 @@ export const UploadArea = () => {
           </div>
         </div>
       )}
-      <div className="bg-black17 border-2 border-gray40 border-dashed rounded w-full md:aspect-[79/50] md:max-h-96 mt-6 md:mt-0  py-20 md:py-10 ">
+      <div className="bg-black17 border-2 border-gray40 border-dashed rounded w-full md:aspect-[79/50] md:max-h-96 mt-6 md:mt-0  py-20 md:py-10  flex flex-col items-center justify-center">
         {!loading && (
           <form
             onSubmit={handleSubmit(handleSend)}
